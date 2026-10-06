@@ -50,3 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:.88rem;padding:2rem 1rem;bo
 .tl h3{font-size:1rem;margin:0 0 .3rem;color:var(--g)}.tl p{font-size:.92rem;line-height:1.5;margin:0}
 .nx{display:flex;justify-content:space-between;margin-top:3rem}.nx span{color:var(--mute)}
 @media(max-width:860px){.tl{grid-template-columns:1fr 1fr}}@media(max-width:520px){.tl{grid-template-columns:1fr}}
+.banner{display:block;width:calc(100% + 2*clamp(1rem,4vw,2.5rem));max-width:none;height:auto;margin:0 calc(-1*clamp(1rem,4vw,2.5rem))}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.intro{padding:1.8rem 0 0}.intro .lead{max-width:38em;margin:0 0 1.2rem}
+.stats2{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;margin:1.8rem 0 0;padding:0;list-style:none}
+.stats2 b{display:block;font:700 2rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--g)}.stats2 span{font-size:.9rem;color:var(--mute)}
