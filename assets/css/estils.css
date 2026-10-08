@@ -89,3 +89,29 @@ dialog.lb::backdrop{background:rgba(8,10,20,.82)}
 .lb-x:focus-visible,.zoomable:focus-visible{outline:3px solid var(--g);outline-offset:2px}
 .lb-body img,.lb-body svg{display:block;margin:0 auto;width:max(100%,900px);max-width:none;height:auto;cursor:default}
 html:has(dialog.lb[open]){overflow:hidden}
+
+/* Botó d'impressió i versió per a paper */
+.print-btn{display:inline-flex;align-items:center;gap:.4rem;margin:.4rem 0 1rem;padding:.5rem .9rem;border:2px solid var(--g);border-radius:999px;background:transparent;color:var(--g);font-weight:700;font-size:.9rem;cursor:pointer}
+.print-btn:hover{background:var(--g);color:#fff}
+.print-btn:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.pr-head{display:none}
+@media print{
+@page{size:A4;margin:14mm 14mm 16mm;@bottom-center{content:counter(page) " / " counter(pages);font-size:9pt;color:#666}}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{background:#fff!important;color:#111!important}
+body{font-size:10.5pt}
+header.top,aside#side,.print-btn,p.nx,dialog.lb,.banner{display:none!important}
+.shell{display:block!important}
+main{padding:0!important;overflow:visible!important;max-width:none!important}
+.pr-head{display:block;border-bottom:2px solid var(--g);padding-bottom:.3rem;margin-bottom:1rem;font-size:9pt;color:#444}
+figure::before{display:none!important}
+h2{break-after:avoid;page-break-after:avoid;margin-top:1.4em}h3{break-after:avoid;page-break-after:avoid}
+figure,.rev>div,tr,.ex,.box,.cmp>div,li{break-inside:avoid;page-break-inside:avoid}
+.rev{grid-template-columns:1fr 1fr!important;gap:.6rem}
+.rev>div::after{content:none!important}
+.rev .when,.rev .verb,.rev .key,.rev .chips{min-height:0!important}
+a{color:inherit;text-decoration:none}
+main a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555;word-break:break-all}
+figure svg,figure img{max-width:100%!important;height:auto}
+.scroll{overflow:visible}
+}

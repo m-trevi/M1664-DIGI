@@ -31,3 +31,31 @@ document.getElementById('th').onclick=function(){var d=r.dataset.theme==='dark'|
   });
   dlg.addEventListener('click',function(e){if(e.target===dlg||e.target.classList.contains('lb-x'))dlg.close()});
 })();
+
+/* Impressió / PDF: botó a cada tema + versió neta per a paper */
+(function(){
+  var isTema=/\bra\d\b/.test(document.body.className);
+  var art=document.querySelector('main article')||document.querySelector('main');
+  if(!isTema||!art)return;
+  var h1=art.querySelector('h1');if(!h1)return;
+  var btn=document.createElement('button');
+  btn.type='button';btn.className='print-btn sans';
+  btn.innerHTML='&#128424;&#65039; Imprimeix o desa en PDF';
+  btn.title='Obre la versió per a imprimir; tria «Desa com a PDF» com a destinació';
+  btn.addEventListener('click',function(){window.print()});
+  var lead=art.querySelector('p.lead');
+  (lead||h1).insertAdjacentElement('afterend',btn);
+  var ph=document.createElement('div');ph.className='pr-head sans';
+  ph.textContent='MP1664 · Digitalització aplicada als sectors productius · CFGM SMX — '+h1.textContent.trim();
+  art.insertBefore(ph,art.firstChild);
+  var theme=null,reopen=[];
+  window.addEventListener('beforeprint',function(){
+    var r=document.documentElement;theme=r.getAttribute('data-theme');r.setAttribute('data-theme','light');
+    reopen=[];document.querySelectorAll('details').forEach(function(d){if(!d.open){d.open=true;reopen.push(d)}});
+  });
+  window.addEventListener('afterprint',function(){
+    var r=document.documentElement;
+    if(theme===null)r.removeAttribute('data-theme');else r.setAttribute('data-theme',theme);
+    reopen.forEach(function(d){d.open=false});
+  });
+})();
