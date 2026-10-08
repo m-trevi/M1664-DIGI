@@ -63,3 +63,29 @@ body.ra4{--g:var(--c4);--g2:var(--c4b);--hl:var(--h4);--deep:var(--d4);--say:var
 body.ra5{--g:var(--c5);--g2:var(--c5b);--hl:var(--h5);--deep:var(--d5);--say:var(--s5)}
 .ra.r1{border-left-color:var(--c1)}.ra.r2{border-left-color:var(--c2)}.ra.r3{border-left-color:var(--c3)}.ra.r4{border-left-color:var(--c4)}.ra.r5{border-left-color:var(--c5)}
 .ra.soonc{border-left-width:6px}
+.rev{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.2rem 0}
+.rev>div{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--g);border-radius:12px;padding:.9rem 1rem;position:relative;font-size:.92rem;line-height:1.45}
+.rev>div:not(:last-child)::after{content:"\2192";position:absolute;right:-.95rem;top:1rem;color:var(--g);font:700 1.2rem sans-serif}
+.rev .n{display:inline-block;font:800 1.5rem "Bricolage Grotesque",system-ui,sans-serif;color:#fff;background:var(--g);border-radius:8px;padding:0 .55rem}
+.rev .when{font:600 .8rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--mute);margin-top:.3rem}
+.rev .verb{font:800 1.15rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--g);margin:.2rem 0 .5rem}
+.rev .key{background:var(--hl);border-radius:8px;padding:.4rem .6rem;margin-bottom:.6rem;font-weight:700}.rev .key small{font-weight:400;color:var(--mute)}
+.rev .chips span{display:inline-block;background:var(--hl);border-radius:999px;padding:.05rem .55rem;margin:.12rem .12rem .12rem 0;font-size:.82rem}
+.rev ul{margin:.2rem 0 0;padding-left:1.1rem}
+dt{font-weight:700;margin-top:.6rem}dd{margin:0 0 0 1rem}
+@media(max-width:1000px){.rev{grid-template-columns:1fr 1fr}.rev>div:nth-child(2)::after{content:none}}
+@media(max-width:560px){.rev{grid-template-columns:1fr}.rev>div::after{content:none!important}}
+@media(min-width:1001px){.rev .when{min-height:2.5em}.rev .verb{min-height:2.6em}.rev .key{min-height:4.2em}.rev .chips{min-height:7.4em}}
+@media(min-width:1001px){.rev .key{box-sizing:border-box;min-height:5.6em}.rev .chips{min-height:8.2em}}
+
+/* Visor (lightbox) */
+.zoomable{cursor:zoom-in}
+figure{position:relative}
+figure:has(.zoomable)::before{content:"\2922  Amplia";position:absolute;top:.5rem;right:.5rem;z-index:1;background:rgba(0,0,0,.62);color:#fff;font:600 .75rem system-ui,sans-serif;padding:.2rem .55rem;border-radius:999px;pointer-events:none;opacity:.9}
+dialog.lb{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100vw;height:100vh}
+dialog.lb::backdrop{background:rgba(8,10,20,.82)}
+.lb-box{position:relative;background:var(--card);color:var(--ink);margin:2vh auto;width:min(96vw,1500px);max-height:96vh;overflow:auto;border-radius:14px;padding:1rem}
+.lb-x{position:sticky;top:0;float:right;z-index:2;width:2.4rem;height:2.4rem;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.6rem;line-height:1;cursor:pointer}
+.lb-x:focus-visible,.zoomable:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.lb-body img,.lb-body svg{display:block;margin:0 auto;width:max(100%,900px);max-width:none;height:auto;cursor:default}
+html:has(dialog.lb[open]){overflow:hidden}
